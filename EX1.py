@@ -1,13 +1,16 @@
 numeros: list[int] = []
-# soma: int = 0
 
 VARIAVEL_CONTROLE: str = 0
 
 print("Se você digitar o número '0' o programa executa as operações")
 while VARIAVEL_CONTROLE not in numeros:
-    numeros.append(int(input("Adicione um número: "))) # converte a entrada diretamente pois vamos trabalhar apenas com números.
+    entrada_usuario: str = input("Adicione um número: ")
+    try:
+        numeros.append(int(entrada_usuario))
+    except:
+        print(f"Entrada inválida: {entrada_usuario}, insira apenas números")
     
-numeros.pop()
+numeros.pop()    
 
 def calculos(lista_de_numeros: list[int]):
     soma: int = 0
@@ -46,7 +49,7 @@ def impares_e_pares_distintos(lista_de_numeros: list[int]):
             impares_distintos.append(item)
         elif item % 2 == 0 and item not in pares_distintos:
             pares_distintos.append(item)
-    
+                
     return print(f"Números ímpares distintos: {impares_distintos}"), print(f"Números pares distintos: {pares_distintos}")
     
 if len(numeros) > 1:    
@@ -54,6 +57,6 @@ if len(numeros) > 1:
     # duplicados(numeros)
     impares_e_pares_distintos(numeros)   
 elif len(numeros) == 1:
-    print("É necessário ao menos dois números, programa encerrado!")
+    print("É necessário ao menos dois números, reinicie o programa!")
 else:
     print("Não há dados para executar as operações, programa encerrado!")
