@@ -2,27 +2,55 @@
 import math
 
 def calculos(lista_de_numeros: list[int]) -> str:
-    soma: int = 0
-    multiplica: int = 1
+    resultado_soma: int = 0
+    resultado_multiplicacao: int = 0
     
-    for n in lista_de_numeros:
-        soma += n
-        multiplica *= n
-    return str(print(f"Soma: {soma}"), print(f"Produto(multiplicação): {multiplica}"))
+    def soma(lista: list[int]) -> int:
+        if not lista:
+            return 0
+        
+        primeiro_valor = lista[0]
+        soma_restante = soma(lista[1:])
+        return primeiro_valor + soma_restante
+    
+    def multiplicacao(lista: list[int]) -> int:
+        if not lista:
+            return 1
+        
+        primeiro_valor = lista[0]
+        soma_restante = multiplicacao(lista[1:])
+        return primeiro_valor * soma_restante
+    
+    resultado_soma = soma(lista_de_numeros)
+    resultado_multiplicacao = multiplicacao(lista_de_numeros)
+    
+    resultado: str = f"Soma: {resultado_soma}\nProduto(multiplicação): {resultado_multiplicacao}"
+    
+    return resultado
 
 def duplicados(lista_de_numeros: list[int]) -> str:
     itens_duplicados: list[int] = []
     itens_vistos: list[int] = []
     
-    for item in lista_de_numeros:
-        if item in itens_vistos and item not in itens_duplicados:
-            itens_duplicados.append(item)
+    def recursao_duplicados(lista: list[int]):
+        if not lista:
+            return 0
+        
+        primeiro_valor = lista[0]
+        
+        if primeiro_valor in itens_vistos and primeiro_valor not in itens_duplicados:
+            itens_duplicados.append(primeiro_valor)
         else:
-            itens_vistos.append(item)
+            itens_vistos.append(primeiro_valor)
             
-    resposta_duplicados: str = itens_duplicados if itens_duplicados else "Nenhum número duplicado encontrado na lista"
+        recursao_duplicados(lista[1:])
+        
+    recursao_duplicados(lista_de_numeros)
     
-    return str(print(f"Números duplicados: {resposta_duplicados}"))
+    existe_ou_nao_duplicados: str = itens_duplicados if itens_duplicados else "Nenhum número duplicado encontrado na lista"
+    resposta: str = f"Números duplicados: {existe_ou_nao_duplicados}"
+    
+    return resposta
     
 def impares_e_pares_distintos(lista_de_numeros: list[int]) -> str:
     impares_distintos: list[int] = []
