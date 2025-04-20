@@ -56,16 +56,27 @@ def impares_e_pares_distintos(lista_de_numeros: list[int]) -> str:
     impares_distintos: list[int] = []
     pares_distintos: list[int] = []
     
-    for item in lista_de_numeros:
-        if item % 2 != 0 and item not in impares_distintos:
-            impares_distintos.append(item)
-        elif item % 2 == 0 and item not in pares_distintos:
-            pares_distintos.append(item)
+    def recursao_impares_pares_distintos(lista: list[int]):
+        if not lista:
+            return 0
+        
+        primeiro_valor = lista[0]
+        
+        if primeiro_valor % 2 != 0 and primeiro_valor not in impares_distintos:
+            impares_distintos.append(primeiro_valor)
+        elif primeiro_valor % 2 == 0 and primeiro_valor not in pares_distintos:
+            pares_distintos.append(primeiro_valor)
             
+        recursao_impares_pares_distintos(lista[1:])
+        
+    recursao_impares_pares_distintos(lista_de_numeros)
+    
     resposta_impares: str = impares_distintos if impares_distintos else "Nenhum número ímpar distinto encontrados na lista"
     resposta_pares: str = pares_distintos if pares_distintos else "Nenhum número par distinto encontrados na lista"
+    
+    retorno: str = f"Números ímpares distintos: {resposta_impares}\nNúmeros pares distintos: {resposta_pares}"
                 
-    return str(print(f"Números ímpares distintos: {resposta_impares}"), print(f"Números pares distintos: {resposta_pares}"))
+    return retorno
     
 def numeros_primos(lista_de_numeros: list[int]) -> str:
     numeros_primos: list[int] = []

@@ -20,8 +20,8 @@ numeros.pop()
     
 if len(numeros) > 1:
     # print(rotinas.calculos(numeros))
-    print(rotinas.duplicados(numeros))
-    # rotinas.impares_e_pares_distintos(numeros)
+    # print(rotinas.duplicados(numeros))
+    print(rotinas.impares_e_pares_distintos(numeros))
     # rotinas.numeros_primos(numeros)
 elif len(numeros) == 1:
     print("É necessário ao menos dois números, reinicie o programa!")
