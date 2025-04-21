@@ -3,26 +3,29 @@ import re
 
 numeros: list[int] = []
 
-VARIAVEL_CONTROLE: int = 0
-
-print("Se você digitar o número '0' a lista termina e executa as rotinas")
-while VARIAVEL_CONTROLE not in numeros:
+print("Se você digitar o número '0' as rotinas são executadas")
+        
+def controle_de_entrada_do_usuário():
     entrada_usuario: str = input("Adicione um número: ")
-    remove_caracteres_indesejados: str = re.sub(r'[^0-9]', '', entrada_usuario)
-    
-    if remove_caracteres_indesejados == '':
-        continue # Se True, volta direto ao início do loop
-    else:
-        conversao: int = int(remove_caracteres_indesejados)
-        numeros.append(conversao)
-    
-numeros.pop()   
+           
+    match entrada_usuario:
+        case entrada_usuario if re.search(r'[^0-9]', entrada_usuario) or entrada_usuario == '':
+            print("Insira apenas números inteiros!")
+            return controle_de_entrada_do_usuário() # Recurção caso entrada indesejada.
+        case '0':
+            return # Finaliza as entradas
+        case _:
+            conversao: int = int(entrada_usuario)
+            numeros.append(conversao)
+            controle_de_entrada_do_usuário() # Recurção acontece para pedir nova entrada do usuário.
+
+controle_de_entrada_do_usuário()  
     
 if len(numeros) > 1:
-    # print(rotinas.calculos(numeros))
-    # print(rotinas.duplicados(numeros))
-    # print(rotinas.impares_e_pares_distintos(numeros))
-    rotinas.numeros_primos(numeros)
+    print(f"\n{rotinas.calculos(numeros)}")
+    print(rotinas.duplicados(numeros))
+    print(rotinas.impares_e_pares_distintos(numeros))
+    print(f"{rotinas.numeros_primos(numeros)}\n")
 elif len(numeros) == 1:
     print("É necessário ao menos dois números, reinicie o programa!")
 else:
