@@ -32,7 +32,7 @@ def duplicados(lista_de_numeros: list[int]) -> str:
     itens_duplicados: list[int] = []
     itens_vistos: list[int] = []
     
-    def recursao_duplicados(lista: list[int]):
+    def recursao_duplicados(lista: list[int]) -> None:
         if not lista:
             return 0
         
@@ -56,7 +56,7 @@ def impares_e_pares_distintos(lista_de_numeros: list[int]) -> str:
     impares_distintos: list[int] = []
     pares_distintos: list[int] = []
     
-    def recursao_impares_pares_distintos(lista: list[int]):
+    def recursao_impares_pares_distintos(lista: list[int]) -> None:
         if not lista:
             return 0
         
@@ -90,10 +90,20 @@ def numeros_primos(lista_de_numeros: list[int]) -> str:
                 return False
         return True
     
-    for num in lista_de_numeros:
-        if verifica_se_primo(num):
-            numeros_primos.append(num)
+    def recursao_numeros_primos(lista: list[int]) -> None:
+        if not lista:
+            return 0
+        
+        primeiro_valor: int = lista[0]
+        
+        if verifica_se_primo(primeiro_valor):
+            numeros_primos.append(primeiro_valor)
+        
+        recursao_numeros_primos(lista[1:])
     
-    resposta_primos: str = numeros_primos if numeros_primos else "Nenhum número primo encontrado na lista"
+    recursao_numeros_primos(lista_de_numeros)
     
-    return str(print(f"Números primos encontrados: {resposta_primos}"))
+    existe_primos_ou_nao: str = numeros_primos if numeros_primos else "Nenhum número primo encontrado na lista"
+    resposta_primos: str = f"Números primos encontrados: {existe_primos_ou_nao}"
+    
+    return resposta_primos
