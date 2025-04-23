@@ -17,7 +17,7 @@
 
 2. Repita o exercício acima usando comprehensions (não pode usar while nem for).
 
-3. Faça um programa com uma função para tratar a entrada de números inteiros. A função pede um número até que o usuário informe um valor válido:
+3. Faça um programa com uma função para tratar a entrada de números inteiros. A função pede um número até que o usuário informe um valor inválido:
 
    ```` Python
    def peganumero(mensagem: str, mensagemerro: str) -> int
