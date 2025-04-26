@@ -1,5 +1,3 @@
-from rotina import FilaAtendimento        
+from rotina import IniciarAtendimento        
         
-cliente = FilaAtendimento()
-
-cliente.fila_atendimento()
+IniciarAtendimento()
